@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import Localization from "../../images/icons/localization.astro";
+import data from "../../data/cv_esp.json";
+import Links from "./partials/Links.astro";
+---
+
+<div class="flex items-center justify-between">
+    <div class="flex-1 space-y-1.5">
+        <h1 class="text-2xl font-bold">{data.name}</h1>
+        <p class="max-w-md text-pretty font-mono text-sm text-muted-foreground">
+            {data.about}
+        </p>
+        <p
+            class="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground"
+        >
+            <a
+                class="inline-flex gap-x-1.5 align-baseline leading-none hover:underline decoration-dotted"
+                href={data.location.link}
+                target="_blank"
+            >
+                <Localization />
+                {data.location.text}
+            </a>
+        </p>
+        <Links contact={data.contact} />
+    </div>
+    <span class="relative flex shrink-0 overflow-hidden rounded-xl size-28">
+        <Image
+            src={data.avatar}
+            alt={data.name}
+            height="460"
+            width="460"
+            loading="eager"
+        />
+    </span>
+</div>
