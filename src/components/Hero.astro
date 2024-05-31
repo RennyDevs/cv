@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { MailIcon, PhoneIcon } from "./../images/index";
 import data from "./../data/cv_esp";
 ---
@@ -31,12 +32,14 @@ import data from "./../data/cv_esp";
                     href={`mailto:${data.contact.email}`}
                     class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground size-8"
                 >
+                    <title>{data.contact.email}</title>
                     <MailIcon />
                 </a>
                 <a
                     href={`tel:${data.contact.tel}`}
                     class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground size-8"
                 >
+                    <title>{data.contact.tel}</title>
                     <PhoneIcon />
                 </a>
                 {
@@ -46,6 +49,7 @@ import data from "./../data/cv_esp";
                             href={s.url}
                             target="_blank"
                         >
+                            <title>{s.name}</title>
                             <s.icon />
                         </a>
                     ))
@@ -53,10 +57,12 @@ import data from "./../data/cv_esp";
             </div>
         </div>
         <span class="relative flex shrink-0 overflow-hidden rounded-xl size-28">
-            <img
-                class="aspect-square h-full w-full"
-                alt={data.name}
+            <Image
                 src={data.avatar}
+                alt={data.name}
+                height="460"
+                width="460"
+                loading="eager"
             />
         </span>
     </div>
