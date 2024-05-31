@@ -1,0 +1,63 @@
+---
+import { MailIcon, PhoneIcon } from "./../images/index";
+import data from "./../data/cv_esp";
+---
+
+<section class="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
+    <div class="flex items-center justify-between">
+        <div class="flex-1 space-y-1.5">
+            <h1 class="text-2xl font-bold">{data.name}</h1>
+            <p
+                class="max-w-md text-pretty font-mono text-sm text-muted-foreground"
+            >
+                {data.about}
+            </p>
+            <p
+                class="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground"
+            >
+                <a
+                    class="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
+                    href={data.location.link}
+                    target="_blank"
+                >
+                    <data.location.icon />
+                    {data.location.text}
+                </a>
+            </p>
+            <div
+                class="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden"
+            >
+                <a
+                    href={`mailto:${data.contact.email}`}
+                    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground size-8"
+                >
+                    <MailIcon />
+                </a>
+                <a
+                    href={`tel:${data.contact.tel}`}
+                    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground size-8"
+                >
+                    <PhoneIcon />
+                </a>
+                {
+                    data.contact.socials.map((s) => (
+                        <a
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground size-8"
+                            href={s.url}
+                            target="_blank"
+                        >
+                            <s.icon />
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+        <span class="relative flex shrink-0 overflow-hidden rounded-xl size-28">
+            <img
+                class="aspect-square h-full w-full"
+                alt={data.name}
+                src={data.avatar}
+            />
+        </span>
+    </div>
+</section>
