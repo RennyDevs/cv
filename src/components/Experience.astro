@@ -1,0 +1,148 @@
+---
+import { experiences } from "../data/cv_esp.json";
+---
+
+<section class="flex min-h-0 flex-col gap-y-3">
+    <h2 class="text-xl font-bold">Experiencia laboral</h2>
+    {
+        experiences.map(
+            ({
+                name,
+                position,
+                highlights,
+                url,
+                summary,
+                startDate,
+                endDate,
+            }) => {
+                const startYear = new Date(startDate).getFullYear();
+                const endYear =
+                    endDate != null
+                        ? new Date(endDate).getFullYear()
+                        : "Actual";
+                return (
+                    <div class="rounded-lg bg-card text-card-foreground">
+                        <div class="flex flex-col space-y-1.5">
+                            <div class="flex items-center justify-between gap-x-2 text-base">
+                                <h3 class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
+                                    {url ? (
+                                        <a class="hover:underline" href={url}>
+                                            {name}
+                                        </a>
+                                    ) : (
+                                        <span>{name}</span>
+                                    )}
+                                    {highlights.map((highlight) => (
+                                        <span class="inline-flex gap-x-1">
+                                            <div class="text-xs px-2 py-0.5 bg-gray-200 text-gray-800 rounded-md font-mono text-nowrap hover:bg-gray-200/60 transition-colors">
+                                                {highlight}
+                                            </div>
+                                        </span>
+                                    ))}
+                                </h3>
+                                <div class="text-sm tabular-nums text-gray-500">
+                                    <time
+                                        datetime={startDate}
+                                        data-title={startDate}
+                                    >
+                                        {startYear}
+                                    </time>
+                                    {" - "}
+                                    <time
+                                        datetime={endDate}
+                                        data-title={endDate}
+                                    >
+                                        {endYear}
+                                    </time>
+                                </div>
+                            </div>
+                            <h4 class="font-mono text-sm leading-none">
+                                {position}
+                            </h4>
+                        </div>
+                        <div class="text-pretty font-mono text-muted-foreground mt-2 text-xs">
+                            {summary}
+                        </div>
+                    </div>
+                );
+            },
+        )
+    }
+    <!-- <div class="rounded-lg bg-card text-card-foreground">
+        <div class="flex flex-col space-y-1.5">
+            <div class="flex items-center justify-between gap-x-2 text-base">
+                <h3
+                    class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none"
+                >
+                    <a class="hover:underline" href="https://clevertech.biz"
+                        >Clevertech</a
+                    >
+                    <span class="inline-flex gap-x-1">
+                        <div
+                            class="inline-flex items-center rounded-md border px-2 py-0.5 font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/60 align-middle text-xs"
+                        >
+                            Remote
+                        </div>
+                    </span>
+                </h3>
+                <div class="text-sm tabular-nums text-gray-500">
+                    2015 - 2021
+                </div>
+            </div>
+            <h4 class="font-mono text-sm leading-none">
+                Lead Android Developer → Full Stack Developer
+            </h4>
+        </div>
+        <div class="text-pretty font-mono text-muted-foreground mt-2 text-xs">
+            Created Android mobile apps and led teams for companies like Vision
+            Media, DKMS, or AAA. Built live streaming application for Evercast
+            from scratch. Technologies: Android, Kotlin, React, TypeScript,
+            GraphQL
+        </div>
+    </div> -->
+    <!-- <div class="rounded-lg bg-card text-card-foreground">
+        <div class="flex flex-col space-y-1.5">
+            <div class="flex items-center justify-between gap-x-2 text-base">
+                <h3
+                    class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none"
+                >
+                    <a class="hover:underline" href="https://bsgroup.eu/"
+                        >Jojo Mobile</a
+                    >
+                    <span class="inline-flex gap-x-1"> </span>
+                </h3>
+                <div class="text-sm tabular-nums text-gray-500">
+                    2012 - 2015
+                </div>
+            </div>
+            <h4 class="font-mono text-sm leading-none">
+                Android Developer → Lead Android Developer
+            </h4>
+        </div>
+        <div class="text-pretty font-mono text-muted-foreground mt-2 text-xs">
+            Built an Android team, created Android apps for biggest Polish
+            companies like LOT, Polskie Radio, Agora, PolskaPress
+        </div>
+    </div> -->
+    <!-- <div class="rounded-lg bg-card text-card-foreground">
+        <div class="flex flex-col space-y-1.5">
+            <div class="flex items-center justify-between gap-x-2 text-base">
+                <h3
+                    class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none"
+                >
+                    <a class="hover:underline" href="https://www.nokia.com"
+                        >Nokia Siemens Networks</a
+                    >
+                    <span class="inline-flex gap-x-1"> </span>
+                </h3>
+                <div class="text-sm tabular-nums text-gray-500">
+                    2010 - 2012
+                </div>
+            </div>
+            <h4 class="font-mono text-sm leading-none">C/C++ Developer</h4>
+        </div>
+        <div class="text-pretty font-mono text-muted-foreground mt-2 text-xs">
+            Creating and testing software for LTE base stations
+        </div>
+    </div> -->
+</section>
