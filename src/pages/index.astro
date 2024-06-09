@@ -2,8 +2,8 @@
 import Layout from "../layouts/Base.astro";
 import Hero from "../components/Hero/Index.astro";
 import Construction from "../components/Construction.astro";
+import About from "../components/About.astro";
 import data from "../data/cv_esp.json";
-// import About from "../components/cv/About.astro";
 // import Experience from "../components/cv/Experience.astro";
 // import Education from "../components/cv/Education.astro";
 ---
@@ -16,7 +16,7 @@ import data from "../data/cv_esp.json";
             class="mx-auto w-full max-w-2xl space-y-8 print:space-y-6"
         >
             <Hero data={data} />
-            <!-- <About /> -->
+            <About sumary={data.sumary} />
             <!-- <Experience /> -->
             <!-- <Education /> -->
             <Construction />
