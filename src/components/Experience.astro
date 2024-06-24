@@ -1,9 +1,15 @@
 ---
-import { experiences } from "../data/cv_esp.json";
+import type { Experience } from "../types";
+
+interface Props {
+    experiences: Experience[];
+}
+
+const { experiences }: Props = Astro.props;
 ---
 
-<section class="flex min-h-0 flex-col gap-y-3">
-    <h2 class="text-xl font-bold">Experiencia laboral</h2>
+<section class="flex min-h-0 flex-col gap-y-4">
+    <h2 class="text-xl font-bold">Experiencia</h2>
     {
         experiences.map(
             ({
@@ -26,14 +32,18 @@ import { experiences } from "../data/cv_esp.json";
                             <div class="flex items-center justify-between gap-x-2 text-base">
                                 <h3 class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
                                     {url ? (
-                                        <a class="hover:underline" href={url}>
+                                        <a
+                                            class="hover:underline mr-2"
+                                            href={url}
+                                            target="_blank"
+                                        >
                                             {name}
                                         </a>
                                     ) : (
-                                        <span>{name}</span>
+                                        <span class="mr-2">{name}</span>
                                     )}
                                     {highlights.map((highlight) => (
-                                        <span class="inline-flex gap-x-1">
+                                        <span class="inline-flex">
                                             <div class="text-xs px-2 py-0.5 bg-gray-200 text-gray-800 rounded-md font-mono text-nowrap hover:bg-gray-200/60 transition-colors">
                                                 {highlight}
                                             </div>
@@ -54,13 +64,14 @@ import { experiences } from "../data/cv_esp.json";
                                     >
                                         {endYear}
                                     </time>
+                                    {/* TODO: may. 2015 - actualidad · 9 años 2 meses */}
                                 </div>
                             </div>
                             <h4 class="font-mono text-sm leading-none">
                                 {position}
                             </h4>
                         </div>
-                        <div class="text-pretty font-mono text-muted-foreground mt-2 text-xs">
+                        <div class="text-pretty font-mono text-gray-600 text-muted-foreground mt-2 text-sm">
                             {summary}
                         </div>
                     </div>

@@ -1,12 +1,13 @@
 export interface CV {
-    name: string;
-    avatar: string;
     about: string;
-    sumary: string;
-    location: Location;
+    avatar: string;
     contact: Contact;
-    work: Work[];
     education: Education[];
+    experiences: Experience[];
+    location: Location;
+    name: string;
+    sumary: string;
+    work: Work[];
 }
 
 interface Work {
@@ -44,4 +45,14 @@ interface Education {
     endDate: string;
     score: string;
     courses: string[];
+}
+
+export interface Experience {
+  endDate?: string;
+  highlights: string[];
+  name: string;
+  position: string;
+  startDate: string;
+  summary: string;
+  url?: string;
 }

@@ -1,10 +1,10 @@
 ---
-import Layout from "../layouts/Base.astro";
-import Hero from "../components/Hero/Index.astro";
-import Construction from "../components/Construction.astro";
 import About from "../components/About.astro";
+import Construction from "../components/Construction.astro";
+import Experience from "../components/Experience.astro";
+import Hero from "../components/Hero/Index.astro";
+import Layout from "../layouts/Base.astro";
 import data from "../data/cv_esp.json";
-// import Experience from "../components/cv/Experience.astro";
 // import Education from "../components/cv/Education.astro";
 ---
 
@@ -17,7 +17,7 @@ import data from "../data/cv_esp.json";
         >
             <Hero data={data} />
             <About sumary={data.sumary} />
-            <!-- <Experience /> -->
+            <Experience experiences={data.experiences}/>
             <!-- <Education /> -->
             <Construction />
         </section>
