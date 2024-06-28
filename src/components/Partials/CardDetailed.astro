@@ -1,0 +1,70 @@
+---
+type Props = {
+    endDate: string;
+    highlights?: string[];
+    subTitle?: string;
+    startDate: string;
+    summary: string;
+    title: string;
+    url?: string;
+};
+
+const { endDate, highlights, subTitle, startDate, summary, title, url }: Props =
+    Astro.props;
+
+const startYear = new Date(startDate).getFullYear();
+const endYear = endDate != null ? new Date(endDate).getFullYear() : "Actual";
+---
+
+<div class="rounded-lg bg-card text-card-foreground">
+    <div class="flex flex-col space-y-1.5">
+        <div class="flex items-center justify-between gap-x-2 text-base">
+            <h3
+                class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none"
+            >
+                {
+                    url ? (
+                        <a
+                            class="hover:underline mr-2"
+                            href={url}
+                            target="_blank"
+                        >
+                            {title}
+                        </a>
+                    ) : (
+                        <span class="mr-2">{title}</span>
+                    )
+                }
+                {
+                    highlights
+                        ? highlights.map((highlight) => (
+                              <span class="inline-flex">
+                                  <div class="text-xs px-2 py-0.5 bg-gray-200 text-gray-800 rounded-md font-mono text-nowrap hover:bg-gray-200/60 transition-colors">
+                                      {highlight}
+                                  </div>
+                              </span>
+                          ))
+                        : null
+                }
+            </h3>
+            <div class="text-sm tabular-nums text-gray-500">
+                <time datetime={startDate} data-title={startDate}>
+                    {startYear}
+                </time>
+                {" - "}
+                <time datetime={endDate} data-title={endDate}>
+                    {endYear}
+                </time>
+                {/* TODO: may. 2015 - actualidad · 9 años 2 meses */}
+            </div>
+        </div>
+        <h4 class="font-mono text-sm leading-none">
+            {subTitle}
+        </h4>
+    </div>
+    <div
+        class="text-pretty font-mono text-gray-600 text-muted-foreground mt-2 text-sm"
+    >
+        {summary}
+    </div>
+</div>
