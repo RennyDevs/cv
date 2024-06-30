@@ -7,6 +7,7 @@ export interface CV {
     location: Location;
     name: string;
     sumary: string;
+    skills: Skill[];
 }
 
 interface Contact {
@@ -44,4 +45,10 @@ interface Experience {
     startDate: string;
     summary: string;
     url?: string;
+}
+
+interface Skill {
+    name: string;
+    level: string;
+    keywords: string[];
 }
