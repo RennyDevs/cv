@@ -49,6 +49,4 @@ interface Experience {
 
 interface Skill {
     name: string;
-    level: string;
-    keywords: string[];
 }
