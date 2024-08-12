@@ -1,10 +1,11 @@
 ---
+import Section from "./Partials/Section.astro";
+
 const { sumary } = Astro.props;
 ---
 
-<section class="flex min-h-0 flex-col gap-y-3">
-    <h2 class="text-xl font-bold">Sobre mí</h2>
+<Section name="Sobre mí">
     <p class="text-pretty font-mono text-sm text-gray-600">
         {sumary}
     </p>
-</section>
+</Section>

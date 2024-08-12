@@ -14,20 +14,20 @@ const { contact } = Astro.props;
     class="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden"
 >
     {
-        contact.email ?? (
+        contact.email ? (
             <Link href={`mailto:${contact.email}`}>
                 <title>{contact.email}</title>
                 <MailIcon />
             </Link>
-        )
+        ) : null
     }
     {
-        contact.tel ?? (
+        contact.tel ? (
             <Link href={`tel:${contact.tel}`}>
                 <title>{contact.tel}</title>
                 <PhoneIcon />
             </Link>
-        )
+        ) : null
     }
     {
         contact.socials.map((s) => (

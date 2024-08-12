@@ -18,7 +18,7 @@ const { data }: Props = Astro.props;
             {data.about}
         </p>
         {
-            data.location.link ?? (
+            data.location.link ? (
                 <p class="max-w-md items-center text-pretty font-mono text-xs text-gray-600">
                     <a
                         class="inline-flex gap-x-1.5 align-baseline leading-none hover:underline decoration-dotted"
@@ -29,13 +29,13 @@ const { data }: Props = Astro.props;
                         {data.location.text}
                     </a>
                 </p>
-            )
+            ) : null
         }
         <Links contact={data.contact} />
     </div>
     <span class="relative flex shrink-0 overflow-hidden rounded-xl size-32">
         {
-            data.avatar ?? (
+            data.avatar ? (
                 <Image
                     height="460"
                     width="460"
@@ -43,7 +43,7 @@ const { data }: Props = Astro.props;
                     alt={data.name}
                     src={data.avatar}
                 />
-            )
+            ) : null
         }
     </span>
 </div>

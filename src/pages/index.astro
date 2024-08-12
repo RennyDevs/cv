@@ -4,7 +4,6 @@ import Education from "../components/Education.astro";
 import Experience from "../components/Experience.astro";
 import Hero from "../components/Hero/Index.astro";
 import Layout from "../layouts/Base.astro";
-// import Project from "../components/Project.astro";
 import Skill from "../components/Skill.astro";
 import data from "../data/cv_esp.ts";
 ---
@@ -15,11 +14,10 @@ import data from "../data/cv_esp.ts";
     >
         <section class="mx-auto w-full max-w-2xl space-y-8 print:space-y-6">
             <Hero data={data} />
-            {data.sumary ?? <About sumary={data.sumary} />}
-            {data.experiences ?? <Experience experiences={data.experiences} />}
-            {data.educations ?? <Education educations={data.educations} />}
-            <!-- <Project /> -->
-            {data.skills ?? <Skill skills={data.skills} />}
+            {data.sumary ? <About sumary={data.sumary} /> : null}
+            {data.experiences ? <Experience experiences={data.experiences} /> : null}
+            {data.educations ? <Education educations={data.educations} /> : null}
+            {data.skills ? <Skill skills={data.skills} /> : null}
         </section>
     </main>
 </Layout>

@@ -1,0 +1,12 @@
+---
+type Props = {
+    name: string;
+};
+
+const { name }: Props = Astro.props;
+---
+
+<section class="flex min-h-0 flex-col gap-y-3">
+    <h2 class="text-xl font-bold">{name}</h2>
+    <slot />
+</section>
