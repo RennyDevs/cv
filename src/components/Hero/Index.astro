@@ -17,27 +17,33 @@ const { data }: Props = Astro.props;
         <p class="max-w-md text-pretty font-mono text-sm text-gray-600">
             {data.about}
         </p>
-        <p
-            class="max-w-md items-center text-pretty font-mono text-xs text-gray-600"
-        >
-            <a
-                class="inline-flex gap-x-1.5 align-baseline leading-none hover:underline decoration-dotted"
-                href={data.location.link}
-                target="_blank"
-            >
-                <Localization />
-                {data.location.text}
-            </a>
-        </p>
+        {
+            data.location.link ?? (
+                <p class="max-w-md items-center text-pretty font-mono text-xs text-gray-600">
+                    <a
+                        class="inline-flex gap-x-1.5 align-baseline leading-none hover:underline decoration-dotted"
+                        href={data.location.link}
+                        target="_blank"
+                    >
+                        <Localization />
+                        {data.location.text}
+                    </a>
+                </p>
+            )
+        }
         <Links contact={data.contact} />
     </div>
     <span class="relative flex shrink-0 overflow-hidden rounded-xl size-32">
-        <Image
-            height="460"
-            width="460"
-            loading="eager"
-            alt={data.name}
-            src={data.avatar}
-        />
+        {
+            data.avatar ?? (
+                <Image
+                    height="460"
+                    width="460"
+                    loading="eager"
+                    alt={data.name}
+                    src={data.avatar}
+                />
+            )
+        }
     </span>
 </div>

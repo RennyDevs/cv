@@ -6,7 +6,7 @@ import Hero from "../components/Hero/Index.astro";
 import Layout from "../layouts/Base.astro";
 // import Project from "../components/Project.astro";
 import Skill from "../components/Skill.astro";
-import data from "../data/cv_esp.json";
+import data from "../data/cv_esp.ts";
 ---
 
 <Layout title={`${data.name} | ${data.about}`}>
@@ -15,11 +15,11 @@ import data from "../data/cv_esp.json";
     >
         <section class="mx-auto w-full max-w-2xl space-y-8 print:space-y-6">
             <Hero data={data} />
-            <About sumary={data.sumary} />
-            <Experience experiences={data.experiences} />
-            <Education educations={data.educations} />
+            {data.sumary ?? <About sumary={data.sumary} />}
+            {data.experiences ?? <Experience experiences={data.experiences} />}
+            {data.educations ?? <Education educations={data.educations} />}
             <!-- <Project /> -->
-            <Skill skills={data.skills} />
+            {data.skills ?? <Skill skills={data.skills} />}
         </section>
     </main>
 </Layout>

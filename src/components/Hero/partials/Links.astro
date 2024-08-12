@@ -13,14 +13,22 @@ const { contact } = Astro.props;
 <div
     class="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden"
 >
-    <Link href={`mailto:${contact.email}`}>
-        <title>{contact.email}</title>
-        <MailIcon />
-    </Link>
-    <Link href={`tel:${contact.tel}`}>
-        <title>{contact.tel}</title>
-        <PhoneIcon />
-    </Link>
+    {
+        contact.email ?? (
+            <Link href={`mailto:${contact.email}`}>
+                <title>{contact.email}</title>
+                <MailIcon />
+            </Link>
+        )
+    }
+    {
+        contact.tel ?? (
+            <Link href={`tel:${contact.tel}`}>
+                <title>{contact.tel}</title>
+                <PhoneIcon />
+            </Link>
+        )
+    }
     {
         contact.socials.map((s) => (
             <Link href={s.url} target="_blank">
