@@ -1,0 +1,18 @@
+services:
+  astro-app:
+    build:
+      context: .
+    container_name: cv-astro
+    command: npm run dev -- --host 0.0.0.0
+    restart: unless-stopped
+    ports:
+      - "4321:4321"
+      - "24678:24678"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+      PORT: 4321
+      CHOKIDAR_USEPOLLING: "true"

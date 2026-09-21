@@ -1,47 +1,118 @@
-# Astro Starter Kit: Minimal
+# CV personal
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Sitio web personal para mostrar un CV/resumen profesional construido con Astro y Tailwind CSS.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Descripción
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Este proyecto sirve como portafolio profesional y perfil de currículum, con una estructura de datos centralizada para mantener el contenido fácil de editar y reutilizable en los componentes.
 
-## 🚀 Project Structure
+La página principal compone secciones como:
+- Hero / presentación
+- Sobre mí
+- Experiencia profesional
+- Educación
+- Habilidades
 
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura principal
 
 ```text
 /
-├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/
+│   ├── data/
+│   │   └── cv_esp.ts
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+├── astro.config.mjs
+├── package.json
+├── README.md
+└── tailwind.config.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Comandos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Desde la raíz del proyecto:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
 
-## 🧞 Commands
+## Docker: desarrollo y producción
 
-All commands are run from the root of the project, from a terminal:
+Este proyecto admite dos modos de ejecución en contenedor, y pueden coexistir sin problema porque tienen objetivos distintos:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### 1) Desarrollo
 
-## 👀 Want to learn more?
+Usa el archivo por defecto de Docker Compose para trabajar localmente con live reload:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+docker compose up --build
+```
+
+Esto ejecuta Astro en modo desarrollo y expone la app en:
+
+```text
+http://localhost:4321
+```
+
+La configuración usa `npm run dev -- --host 0.0.0.0` y habilita HMR.
+
+### 2) Producción
+
+Para levantar una versión preparada para servir el build final, usa este archivo adicional:
+
+```bash
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+Esto compila la app con `npm run build` y luego sirve la carpeta `dist` con `npm run preview -- --host 0.0.0.0 --port 4321`.
+
+La app queda disponible en:
+
+```text
+http://localhost:8080
+```
+
+Esto evita mezclar la versión de desarrollo con la de producción y permite tener ambos servicios abiertos al mismo tiempo sin conflicto.
+
+### Diferencias clave
+
+- Desarrollo: `astro dev`, hot reload, consola de desarrollo, puertos 4321 y HMR 24678
+- Producción: `astro build` + `astro preview`, sin watcher, preparado para servir la build final
+
+## Personalización del contenido
+
+La información del CV se mantiene principalmente en:
+
+- `src/data/cv_esp.ts`
+
+Ese archivo contiene la información personal, experiencia, educación y habilidades. En la mayoría de los casos, conviene editar ahí antes de tocar los componentes.
+
+La composición de la página se mantiene en:
+
+- `src/pages/index.astro`
+
+## Herramientas y stack
+
+- Astro
+- TypeScript
+- Tailwind CSS
+- Vite
+
+## Validación
+
+Antes de cerrar cambios relevantes, se recomienda ejecutar:
+
+```bash
+npm run build
+```
+
+Esto valida que el proyecto compila correctamente y que no hay errores de tipado.
+
+## Nota
+
+El repositorio está pensado para cambios pequeños, enfocados y con estructura simple. Se prioriza mantener el contenido del CV en datos y evitar duplicación de texto en componentes.
